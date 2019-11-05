@@ -15,7 +15,7 @@ module "instances" {
   source = "./modules/instances"
 
   ami = ("Enter your instance ami")
-  qtd_of_instances = (Enter how many machines in string format)
+  qtd_of_instances = (Enter how many machines in int format)
   ssh_key_machine = ("Enter your ssh machine key")
   source_block_ip = ("Enter your public ip with CIDR")
 }
