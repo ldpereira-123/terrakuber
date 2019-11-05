@@ -7,15 +7,23 @@ provider "aws" {
   version = "~> 2.0"
   region = "us-east-1"
 
-  access_key = "Enter your use aws acess key"
-  secret_key = "Enter your user aws secret key"
+  access_key = "AKIAZXDKHXVLZANR2LMI"
+  secret_key = "RQDbCbAseFh2NO7rnL/BL8lHbc9wHl2HpS5X8Q8t"
 }
 
 module "instances" {
   source = "./modules/instances"
 
-  ami = ("Enter your instance ami")
-  qtd_of_instances = ()
-  ssh_key_machine = ("Enter your ssh machine key")
-  source_block_ip = ("Enter your public ip with CIDR")
+  ami = ("ami-069693a1b51639d80")
+  qtd_of_instances = (3)
+  ssh_key_machine = ("ubuntu-key")
+  source_block_ip = ("179.191.109.110/32")
+}
+
+output "instancesNames" {
+  value = module.instances.machineNames
+}
+
+output "instancesIPS" {
+  value = module.instances.ips
 }
