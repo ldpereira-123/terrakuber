@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: leroy-pod
+spec:
+  containers:
+    - name: container-leroy
+      image: danilolopes7/app_leroy:v2
+      ports:
+        - containerPort: 1337

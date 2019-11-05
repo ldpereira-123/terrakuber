@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leroy-deployment
+  labels:
+    app: leroy-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leroy-pod
+  template:
+    metadata:
+      labels:
+        app: leroy-pod
+    spec:
+      containers:
+      - name: container-leroy
+        image: danilolopes7/app_leroy:v2
+        ports:
+        - containerPort: 1337
