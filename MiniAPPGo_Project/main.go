@@ -9,7 +9,7 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Yay, it works!\nWelcome to Leroy Merlin SRE / DevOps Engineer Test App :)")
+	fmt.Fprintln(w, "Hey, it works!")
 }
 
 func main() {
