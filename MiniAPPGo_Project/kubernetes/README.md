@@ -20,6 +20,7 @@ Here's a little help for you initialize your basic cluster operation:
 
 ---
 
+
 **Packges:**
 
 **Docker:** `curl -fsSL https://get.docker.com | bash`
@@ -28,21 +29,19 @@ Here's a little help for you initialize your basic cluster operation:
 
 **Set docker cgroup driver to SystemD:**
 
-`find /etc -type f,l -name "*docker.service*""`
+Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` section on Docker service config file
 
-Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` container configuration file
-
-`systemctl daemon-reload && systemctl restart docker`
+After: `systemctl daemon-reload && systemctl restart docker`
 
 ***Only in the master node:***
 
 `kubeadm init --apiserver-advertise-address $(hostname -i)`
 
- `mkdir -p $HOME/.kube`
+`mkdir -p $HOME/.kube`
 
- `sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config`
+`sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config`
 
- `sudo chown $(id -u):$(id -g) $HOME/.kube/config`
+`sudo chown $(id -u):$(id -g) $HOME/.kube/config`
 
 Some Image:
 
