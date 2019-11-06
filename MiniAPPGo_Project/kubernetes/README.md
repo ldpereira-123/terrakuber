@@ -54,6 +54,4 @@ kubeadm join --token XXXXXXXXX MASTER_IP:6443 --discovery-token-ca-cert-hash sha
 
 # Environment
 
-Some Image:
-
 ![Imgur](https://i.imgur.com/QGvld6Y.jpg)
