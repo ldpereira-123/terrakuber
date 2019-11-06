@@ -18,17 +18,31 @@ Here's a little help for you initialize your basic cluster operation:
 
 ***The main Kubernetes pod's ideia is, if your new pod needs 3 GB and your node doesn't have, it goes to another node.***
 
+---
 
+**Packges:**
 
 **Docker:** `curl -fsSL https://get.docker.com | bash`
 
-**kubectl:** `See a way are you'll install on your distribution`
+**kubectl:** `See a way to install it on your distribution`
 
 **Set docker cgroup driver to SystemD:**
 
 `find /etc -type f,l -name "*docker.service*""`
 
 Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` container configuration file
+
+`systemctl daemon-reload && systemctl restart docker`
+
+***Only in the master node:***
+
+`kubeadm init --apiserver-advertise-address $(hostname -i)`
+
+ `mkdir -p $HOME/.kube`
+
+ `sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config`
+
+ `sudo chown $(id -u):$(id -g) $HOME/.kube/config`
 
 Some Image:
 
