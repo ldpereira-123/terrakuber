@@ -43,6 +43,17 @@ After: `systemctl daemon-reload && systemctl restart docker`
 
 `sudo chown $(id -u):$(id -g) $HOME/.kube/config`
 
+***On the nodes***
+
+kubeadm join --token XXXXXXXXX MASTER_IP:6443 --discovery-token-ca-cert-hash sha256:37092
+
+
+***After, install the wave net controller. Necessary for communication between master node and the nodes Network environment
+
+`kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"`
+
+# Environment
+
 Some Image:
 
 ![Imgur](https://i.imgur.com/QGvld6Y.jpg)
