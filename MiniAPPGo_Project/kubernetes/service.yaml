@@ -1,9 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: leroy-service
-spec:
-  selector:
-    app: leroy-pod
-  ports:
-    - port: 1337

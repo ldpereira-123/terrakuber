@@ -6,8 +6,6 @@ This folder describes how I've create the Kubernetes engine for this mini projec
 
 First you must setup your cluster for default operation and then use this files to create the Kubernetes environment
 
-Here's a little help for you initialize your basic cluster operation:
-
 ---
 
 ***The most important thing is turn off the SWAP memory on the machines.***
@@ -20,16 +18,33 @@ Here's a little help for you initialize your basic cluster operation:
 
 ---
 
+# Environment
 
-**Packges:**
+![Imgur](https://i.imgur.com/J5qduF3.jpg)
 
-**Docker:** `curl -fsSL https://get.docker.com | bash`
+**Yamls** 
 
-**kubectl:** `See a way to install it on your distribution`
+```
+yamls
+├── app
+│   ├── pod-app-v1.yaml
+│   └── pod-app-v2.yaml
+├── plugins
+│   └── nginx-ingress-mandatory-controller.yaml
+└── services
+    ├── ingress.yaml
+    └── nodeport_ngnix_service.yaml
+```
 
-**Set docker cgroup driver to SystemD:**
+# Setting Up The Cluster
 
-Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` section on Docker service config file
+**Docker:** `curl -fsSL https://get.docker.com | bash` (All Machines)
+
+**kubectl:** `See a way to install it on your distribution` (All Machines)
+
+**Set docker cgroup driver to SystemD:** (All Machines)
+
+Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` section on Docker service config file 
 
 After: `systemctl daemon-reload && systemctl restart docker`
 
@@ -48,10 +63,26 @@ After: `systemctl daemon-reload && systemctl restart docker`
 kubeadm join --token XXXXXXXXX MASTER_IP:6443 --discovery-token-ca-cert-hash sha256:37092
 
 
-***After, install the wave net controller. Necessary for communication between master node and the nodes Network environment***
+***Install Wave Net Controller. Necessary for communication between master node and the nodes Network environment***
 
 `kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"`
 
-# Environment
+## Verifing
 
-![Imgur](https://i.imgur.com/QGvld6Y.jpg)
+`kubectl get nodes` => See if master node and the nodes are in `Ready` state
+
+`kubectl get pods --all-namespaces` => See if all Kubernetes System Pods are in running state
+
+`kubectl get deployments --all-namespaces` => Se if all Kubernetes System Deployments are in running state
+
+
+
+## Post Cluster Setup
+
+***Install mandatory nginx ingress controller:***
+
+kubectl applt -f plugins/nginx-ingress-mandatory-controller.yaml
+
+***Nginx service:***
+
+kubectl applt -f services/nodeport_ngnix_service.yaml

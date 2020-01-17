@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: terrakubev2-pod # POD Name
+  labels:
+    app: terrakubev2-app
+spec:
+  containers:
+    - name: container-leroy # Container Name
+      image: hashicorp/http-echo # Container Image from DockerHub
+      args:
+        - "-text=Hey!. It works. Terrakuber Application Version 2"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: terrakubev2-service
+spec:
+  selector:
+    app: terrakubev2-app
+  ports:
+    - port: 5678
