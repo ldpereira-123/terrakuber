@@ -38,11 +38,13 @@ yamls
 
 # Setting Up The Cluster
 
-**Docker:** `curl -fsSL https://get.docker.com | bash` (All Machines)
+***All Machines***
 
-**kubectl:** `See a way to install it on your distribution` (All Machines)
+**Docker:** `curl -fsSL https://get.docker.com | bash` 
 
-**Set docker cgroup driver to SystemD:** (All Machines)
+**kubectl:** `See a way to install it on your distribution` 
+
+**Set docker cgroup driver to SystemD:** 
 
 Put this flag: `--exec-opt native.cgroupdriver=systemd` in the `ExecStart` section on Docker service config file 
 
@@ -76,13 +78,12 @@ kubeadm join --token XXXXXXXXX MASTER_IP:6443 --discovery-token-ca-cert-hash sha
 `kubectl get deployments --all-namespaces` => Se if all Kubernetes System Deployments are in running state
 
 
-
 ## Post Cluster Setup
 
-***Install mandatory nginx ingress controller:***
+**Install mandatory nginx ingress controller:**
 
 kubectl applt -f plugins/nginx-ingress-mandatory-controller.yaml
 
-***Nginx service:***
+**Nginx service:**
 
 kubectl applt -f services/nodeport_ngnix_service.yaml
