@@ -27,8 +27,10 @@ First you must setup your cluster for default operation and then use this files 
 ```
 yamls
 ├── app
-│   ├── pod-app-v1.yaml
-│   └── pod-app-v2.yaml
+│   ├── app-v1-deployment.yaml
+│   ├── app-v2-deployment.yaml
+│   ├── pod-app-v1.yaml (Alternative)
+│   └── pod-app-v2.yaml (Alternative)
 ├── plugins
 │   └── nginx-ingress-mandatory-controller.yaml
 └── services

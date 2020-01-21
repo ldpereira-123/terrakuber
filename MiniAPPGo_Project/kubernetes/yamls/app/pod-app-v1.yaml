@@ -6,7 +6,7 @@ metadata:
     app: terrakubev1-app
 spec:
   containers:
-    - name: container-leroy # Container Name
+    - name: container-terrakuberv1 # Container Name
       image: hashicorp/http-echo # Container Image from DockerHub
       args:
         - "-text=Hey!. It works. Terrakuber Application Version 1"
