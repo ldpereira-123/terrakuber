@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: terrakuber-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /terrakuberv1
+          backend:
+            serviceName: terrakuberv1-service # Selecting Service
+            servicePort: 5678
+        - path: /terrakuberv2
+          backend:
+            serviceName: terrakuberv2-service # Selecting Service
+            servicePort: 5678

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terrakuberv2-deployment # Deployment Name
+  labels:
+    app: terrakuberv2-app # Label Name in Deployments
+spec:
+  replicas: 1 # Quantity of running PODs
+  selector:
+    matchLabels:
+      app: terrakuberv2
+  template:
+    metadata:
+      labels:
+        app: terrakuberv2 # Label Name in PODs
+    spec:
+      containers:
+      - name: terrakuberv2
+        image: hashicorp/http-echo # Container Image from DockerHub
+        args:
+        - "-text=Hey!. It works. Terrakuber Application Version 2"
+        ports:
+        - containerPort: 1337 # Container port
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: terrakuberv2-service
+spec:
+  ports:
+  - port: 5678
+    targetPort: 5678
+    protocol: TCP
+    name: http
+  selector:
+    app: terrakuberv2 # Selecting Deployment
