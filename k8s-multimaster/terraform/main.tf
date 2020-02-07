@@ -6,8 +6,8 @@ provider "aws" {
     version = "~> 2.0"
     region = "us-east-1"
 
-    access_key = "AKIA25277PEB7JKJ2AYF"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 }
 
 module "K8S-ASG" {
@@ -22,7 +22,7 @@ module "haproxy" {
   instance_type = "t2.micro"
   key_name = "ec2-instances"
   ansible_user = "ubuntu"
-  private_key = "/home/danilo/.ssh/ec2-instances.pem"
+  private_key = "Path to your .pem"
   security_group = module.K8S-ASG.ASG_Name
 }
 
@@ -34,7 +34,7 @@ module "k8s-masters" {
   instance_type = "t2.medium"
   key_name = "ec2-instances"
   ansible_user = "ubuntu"
-  private_key = "/home/danilo/.ssh/ec2-instances.pem"
+  private_key = "Path to your .pem"
   security_group = module.K8S-ASG.ASG_Name
 }
 
@@ -46,6 +46,6 @@ module "k8s-workers" {
   instance_type = "t2.medium"
   key_name = "ec2-instances"
   ansible_user = "ubuntu"
-  private_key = "/home/danilo/.ssh/ec2-instances.pem"
+  private_key = "Path to your .pem"
   security_group = module.K8S-ASG.ASG_Name
 }
